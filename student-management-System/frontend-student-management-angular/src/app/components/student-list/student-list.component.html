@@ -1,0 +1,29 @@
+<div class="card">
+  <h3>Students</h3>
+  <div *ngIf="loading">Loading...</div>
+  <div class="error" *ngIf="error">{{error}}</div>
+
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Fee</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of students">
+        <td>{{s.id}}</td>
+        <td>{{s.name}}</td>
+        <td>{{s.course}}</td>
+        <td>{{s.fee}}</td>
+        <td><button (click)="deleteStudent(s.id)">Delete</button></td>
+      </tr>
+      <tr *ngIf="students.length===0">
+        <td colspan="5">No students</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

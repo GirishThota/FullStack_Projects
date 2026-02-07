@@ -1,0 +1,36 @@
+<div class="card">
+  <h3>Add Student</h3>
+  <div class="error" *ngIf="error">{{error}}</div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+      <div>
+        <label>Student ID</label><br/>
+        <input type="number" formControlName="id" />
+        <div class="error" *ngIf="form.controls.id.touched && form.controls.id.invalid">ID is required</div>
+      </div>
+
+      <div>
+        <label>Name</label><br/>
+        <input type="text" formControlName="name" />
+        <div class="error" *ngIf="form.controls.name.touched && form.controls.name.invalid">Name is required</div>
+      </div>
+
+      <div>
+        <label>Course</label><br/>
+        <input type="text" formControlName="course" />
+        <div class="error" *ngIf="form.controls.course.touched && form.controls.course.invalid">Course is required</div>
+      </div>
+
+      <div>
+        <label>Fee</label><br/>
+        <input type="number" formControlName="fee" />
+        <div class="error" *ngIf="form.controls.fee.touched && form.controls.fee.errors?.['required']">Fee is required</div>
+        <div class="error" *ngIf="form.controls.fee.touched && form.controls.fee.errors?.['min']">Fee must be greater than 5000</div>
+      </div>
+    </div>
+
+    <br/>
+    <button type="submit" [disabled]="saving">{{saving ? 'Saving...' : 'Add Student'}}</button>
+  </form>
+</div>
