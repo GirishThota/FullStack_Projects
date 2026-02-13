@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/talenttrack?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+app:
+  jwt:
+    # Change this in production. Must be at least 256-bit for HS256.
+    secret: "CHANGE_ME__THIS_IS_A_DEMO_SECRET_CHANGE_ME_32_CHARS_MIN"
+    expirationMinutes: 120
+  storage:
+    resumeDir: "./storage/resumes"
+
+springdoc:
+  swagger-ui:
+    path: /swagger

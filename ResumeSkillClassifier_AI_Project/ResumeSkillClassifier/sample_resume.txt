@@ -1,0 +1,2 @@
+Skilled in Java, Spring Boot, REST APIs, JWT authentication, MySQL, and Docker.
+Worked on backend services, database design, and API development.

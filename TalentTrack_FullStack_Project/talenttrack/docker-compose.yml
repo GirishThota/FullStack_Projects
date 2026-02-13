@@ -1,0 +1,29 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: talenttrack
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/talenttrack?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      APP_JWT_SECRET: "CHANGE_ME__THIS_IS_A_DEMO_SECRET_CHANGE_ME_32_CHARS_MIN"
+      APP_STORAGE_RESUMEDIR: /app/storage/resumes
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    volumes:
+      - resumes:/app/storage/resumes
+
+volumes:
+  mysql_data:
+  resumes:
